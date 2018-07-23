@@ -15,6 +15,12 @@ class RegisterEntry {
   String ownerId
 
   /**
+   * Register entries can have a profile which allows routing and processing based
+   * on some selective value
+   */
+  String profile
+
+  /**
    * A JSON Document which is the document describing the register entry
    */
   String entry
@@ -26,6 +32,7 @@ class RegisterEntry {
 
   static constraints = {
          ownerId blank: false, nullable: false
+         profile blank: false, nullable: true
            entry blank: false, nullable: false
        signature blank: false, nullable: false
   }
@@ -34,6 +41,7 @@ class RegisterEntry {
     table 'md_register_entry'
             id column: 're_id', generator: 'uuid', length:36
        ownerId column: 're_owner_id'
+       profile column: 're_profile'
          entry column: 're_entry'
      signature column: 're_sig'
   }
